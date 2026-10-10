@@ -115,6 +115,23 @@ Example:
 
 ## API
 
+### Local browser checks
+
+The required `e2e-tests` CI check builds the Cloudflare worker and exercises
+maintenance-mode login in Chromium. Run the same checks locally with:
+
+```bash
+npx playwright install chromium
+npm run cf:build
+npm run test:e2e
+```
+
+Playwright starts an HTTPS server on `127.0.0.1:16145` with local D1, KV, and R2
+emulators. Each run seeds a fresh temporary SQLite database with synthetic users;
+it does not use deployed services or an existing application database. HTTPS keeps
+the production session-cookie behavior intact. Browser traces and screenshots
+are written under `test-results/browser/`, with the report in `playwright-report/`.
+
 See [CLAUDE.md](./CLAUDE.md) for full API documentation.
 
 ### Key Endpoints
