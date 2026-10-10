@@ -1,0 +1,24 @@
+{
+  // Local emulators only; these bindings do not identify production resources.
+  "name": "cardshub-e2e",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-12-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "cardshub-e2e",
+    "database_id": "00000000-0000-0000-0000-000000000001"
+  }],
+  "r2_buckets": [{ "binding": "R2", "bucket_name": "cardshub-e2e" }],
+  "kv_namespaces": [{ "binding": "CACHE_KV", "id": "00000000000000000000000000000001" }],
+  "durable_objects": { "bindings": [{
+    "name": "IMAGE_PROCESSOR",
+    "class_name": "ImageProcessor"
+  }] },
+  "migrations": [{ "tag": "v1", "new_classes": ["ImageProcessor"] }],
+  "vars": {
+    "NEXT_PUBLIC_APP_URL": "https://127.0.0.1:16145",
+    "R2_BUCKET_NAME": "cardshub-e2e"
+  }
+}
